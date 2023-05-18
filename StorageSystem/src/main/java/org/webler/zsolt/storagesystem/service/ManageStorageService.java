@@ -29,10 +29,12 @@ public class ManageStorageService {
         Storage storageByType = storageRepository.getStorageByType(storageType);
 
         ItemDetails itemDetails = new ItemDetails();
-        itemDetails.setItem(item);
-        itemDetails.setStorage(storageByType);
         itemDetails.setQuantity(itemDetails.getQuantity() + 1);
-        itemDetailsRepository.save(itemDetails);
+
+        storageByType.add(itemDetails);
+        item.add(itemDetails);
+
+        itemDetailsRepository.saveAndFlush(itemDetails);
 
         return storageByType;
     }

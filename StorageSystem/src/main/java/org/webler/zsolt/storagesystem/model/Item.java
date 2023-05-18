@@ -1,6 +1,7 @@
 package org.webler.zsolt.storagesystem.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.webler.zsolt.storagesystem.model.enums.ShopCategory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,7 +33,13 @@ public class Item {
     @Embedded
     private UnitQuantity unitQuantity;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "item")
-    private List<ItemDetails> itemDetails;
+    private List<ItemDetails> itemDetails = new ArrayList<>();
+
+    public void add(ItemDetails itemDetails) {
+        itemDetails.setItem(this);
+        this.itemDetails.add(itemDetails);
+    }
 
 }

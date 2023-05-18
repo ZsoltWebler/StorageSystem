@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.webler.zsolt.storagesystem.model.enums.StorageType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,13 @@ public class Storage {
     @Column(name = "type", unique = true)
     private StorageType type;
 
-    @OneToMany(mappedBy = "storage")
-    private List<ItemDetails> itemDetails;
+    @OneToMany
+    private List<ItemDetails> itemDetails = new ArrayList<>();
+
+    public void add(ItemDetails itemDetails) {
+        itemDetails.setStorage(this);
+        this.itemDetails.add(itemDetails);
+    }
 
     public Storage(StorageType type) {
         this.type = type;

@@ -12,9 +12,9 @@ public class ItemDetailsKey implements Serializable {
     @Serial
     private static final long serialVersionUID = 7573790735407535286L;
 
-    @Column(name = "item_id")
+    @Column(name = "itemId")
     Long itemId;
 
-    @Column(name = "storage_id")
+    @Column(name = "storageId")
     Long storageId;
 }
