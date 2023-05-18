@@ -24,6 +24,6 @@ public class ItemDetails {
     @JoinColumn(name = "storage_id")
     private Storage storage;
 
-    private Double quantity;
+    private Double quantity = 0.0;
 
 }

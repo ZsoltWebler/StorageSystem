@@ -20,8 +20,13 @@ public class Storage {
     private Long id;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "type", unique = true)
     private StorageType type;
 
     @OneToMany(mappedBy = "storage")
     private List<ItemDetails> itemDetails;
+
+    public Storage(StorageType type) {
+        this.type = type;
+    }
 }
