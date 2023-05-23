@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.webler.zsolt.storagesystem.model.enums.ShopCategory;
+import org.webler.zsolt.storagesystem.model.enums.StorageType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,49 @@ public class Item {
     @JsonIgnore
     @OneToMany(mappedBy = "item")
     private List<ItemDetails> itemDetails = new ArrayList<>();
+
+    public Storage getAvailableStorage() {
+
+        if (itemDetails.size() < 2) {
+
+            if (itemDetails.size() < 1) {
+                return null;
+            }
+
+            Storage storage = itemDetails.get(0).getStorage();
+            if (storage.getType() == StorageType.AVAILABLE) {
+                return storage;
+            } else {
+                return null;
+            }
+        }
+        Storage storage_1 = itemDetails.get(0).getStorage();
+        Storage storage_2 = itemDetails.get(1).getStorage();
+
+        return storage_1.getType() == StorageType.AVAILABLE ? storage_1 : storage_2;
+
+
+    }
+
+    public Storage getTargetStorage() {
+        if (itemDetails.size() < 2) {
+
+            if (itemDetails.size() < 1) {
+                return null;
+            }
+
+            Storage storage = itemDetails.get(0).getStorage();
+            if (storage.getType() == StorageType.TARGET) {
+                return storage;
+            } else {
+                return null;
+            }
+        }
+        Storage storage_1 = itemDetails.get(0).getStorage();
+        Storage storage_2 = itemDetails.get(1).getStorage();
+
+        return storage_1.getType() == StorageType.TARGET ? storage_1 : storage_2;
+    }
 
     public void add(ItemDetails itemDetails) {
         itemDetails.setItem(this);

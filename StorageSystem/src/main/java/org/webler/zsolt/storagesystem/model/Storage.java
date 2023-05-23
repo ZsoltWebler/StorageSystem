@@ -24,7 +24,7 @@ public class Storage {
     @Column(name = "type", unique = true)
     private StorageType type;
 
-    @OneToMany
+    @OneToMany(mappedBy = "storage")
     private List<ItemDetails> itemDetails = new ArrayList<>();
 
     public void add(ItemDetails itemDetails) {

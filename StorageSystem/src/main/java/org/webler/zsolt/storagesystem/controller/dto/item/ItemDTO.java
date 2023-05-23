@@ -11,6 +11,7 @@ import org.webler.zsolt.storagesystem.model.enums.ShopCategory;
 @NoArgsConstructor
 public class ItemDTO {
 
+    private Long id;
     private String name;
     private ShopCategory category;
     private UnitQuantity unitQuantity;

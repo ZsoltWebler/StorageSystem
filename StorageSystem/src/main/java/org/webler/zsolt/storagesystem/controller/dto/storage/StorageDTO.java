@@ -13,7 +13,6 @@ import java.util.HashMap;
 @NoArgsConstructor
 public class StorageDTO {
 
-
     private StorageType type;
     private HashMap<ItemDTO,Double> items;
 }

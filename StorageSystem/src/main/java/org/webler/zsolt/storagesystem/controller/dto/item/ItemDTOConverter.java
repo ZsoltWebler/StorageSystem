@@ -18,6 +18,7 @@ public class ItemDTOConverter {
     public static ItemDTO convertToItemDTO(Item item) {
         ItemDTO itemDTO = new ItemDTO();
 
+        itemDTO.setId(item.getId());
         itemDTO.setName(item.getName());
         itemDTO.setCategory(item.getCategory());
         itemDTO.setUnitQuantity(item.getUnitQuantity());
