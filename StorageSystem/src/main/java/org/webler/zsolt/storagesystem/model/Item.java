@@ -42,4 +42,9 @@ public class Item {
         this.itemDetails.add(itemDetails);
     }
 
+    public void remove(ItemDetails itemDetails) {
+        itemDetails.setItem(null);
+        this.itemDetails.remove(itemDetails);
+    }
+
 }

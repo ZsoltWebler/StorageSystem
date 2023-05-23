@@ -40,11 +40,24 @@ public class ManageStorageService {
     }
 
     public Storage removeItemFromStorage(StorageType storageType, Long itemId) {
-        return null;
+
+        Item item = itemRepository.findById(itemId).orElseThrow();
+        Storage storageByType = storageRepository.getStorageByType(storageType);
+
+        ItemDetails itemDetails = itemDetailsRepository.findByItemAndStorage(item, storageByType).orElseThrow();
+
+        storageByType.remove(itemDetails);
+        item.remove(itemDetails);
+
+        itemDetailsRepository.delete(itemDetails);
+
+
+        return storageByType;
     }
 
     public Storage getStorageContentByType(StorageType storageType) {
-        return null;
+
+        return storageRepository.getStorageByType(storageType);
     }
 
 

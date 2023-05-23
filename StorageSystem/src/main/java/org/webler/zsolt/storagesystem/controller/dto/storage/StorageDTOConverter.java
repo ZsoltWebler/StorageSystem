@@ -5,7 +5,6 @@ import org.webler.zsolt.storagesystem.controller.dto.item.ItemDTOConverter;
 import org.webler.zsolt.storagesystem.model.ItemDetails;
 import org.webler.zsolt.storagesystem.model.Storage;
 
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;

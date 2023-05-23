@@ -28,8 +28,13 @@ public class Storage {
     private List<ItemDetails> itemDetails = new ArrayList<>();
 
     public void add(ItemDetails itemDetails) {
-        itemDetails.setStorage(this);
-        this.itemDetails.add(itemDetails);
+            itemDetails.setStorage(this);
+            this.itemDetails.add(itemDetails);
+    }
+
+    public void remove(ItemDetails itemDetails) {
+        itemDetails.setItem(null);
+        this.itemDetails.remove(itemDetails);
     }
 
     public Storage(StorageType type) {
