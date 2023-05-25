@@ -5,13 +5,14 @@ import org.springframework.stereotype.Repository;
 import org.webler.zsolt.storagesystem.model.Item;
 import org.webler.zsolt.storagesystem.model.enums.ShopCategory;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
 
 
-    Optional<Item> findByCategory(ShopCategory category);
+    List<Item> findAllByCategory(ShopCategory category);
 
     Optional<Item> findByName(String name);
 }

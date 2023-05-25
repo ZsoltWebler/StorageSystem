@@ -96,7 +96,33 @@ public class ManageStorageServiceTest {
         manageStorageService.addItemToStorage(StorageType.AVAILABLE, 100L);
 
         Mockito.verify(detailsMock,Mockito.times(1)).setQuantity(1.0);
+    }
 
+    @Test
+    public void removeItemFromStorageTest() {
+
+        Item itemMock = mock(Item.class, "itemMock");
+        itemMock.setId(100L);
+
+        Storage storageMock = mock(Storage.class, "storageMock");
+        storageMock.setType(StorageType.AVAILABLE);
+
+        ItemDetails detailsMock = mock(ItemDetails.class, "detailsMock");
+
+        Mockito.when(itemRepository.findById(any())).thenReturn(Optional.of(itemMock));
+        Mockito.when(storageRepository.getStorageByType(any())).thenReturn(storageMock);
+        Mockito.when(itemDetailsRepository.findByItemAndStorage(any(), any())).thenReturn(Optional.of(detailsMock));
+
+        manageStorageService.removeItemFromStorage(StorageType.AVAILABLE, 100L);
+
+        Mockito.verify(itemRepository,Mockito.times(1)).findById(100L);
+        Mockito.verify(storageRepository,Mockito.times(1)).getStorageByType(StorageType.AVAILABLE);
+        Mockito.verify(itemDetailsRepository,Mockito.times(1)).findByItemAndStorage(itemMock,storageMock);
+
+        Mockito.verify(storageMock,Mockito.times(1)).remove(detailsMock);
+        Mockito.verify(itemMock,Mockito.times(1)).remove(detailsMock);
+
+        Mockito.verify(itemDetailsRepository,Mockito.times(1)).delete(detailsMock);
 
     }
 
