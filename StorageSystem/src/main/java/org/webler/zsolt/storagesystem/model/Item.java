@@ -35,7 +35,7 @@ public class Item {
     private UnitQuantity unitQuantity;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "item")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "item")
     private List<ItemDetails> itemDetails = new ArrayList<>();
 
     public Storage getAvailableStorage() {

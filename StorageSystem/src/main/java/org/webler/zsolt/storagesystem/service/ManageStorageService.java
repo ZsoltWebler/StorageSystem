@@ -16,6 +16,8 @@ import org.webler.zsolt.storagesystem.repository.ItemDetailsRepository;
 import org.webler.zsolt.storagesystem.repository.ItemRepository;
 import org.webler.zsolt.storagesystem.repository.StorageRepository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -148,72 +150,16 @@ public class ManageStorageService {
 
     public SuperShoppingList getShoppingList() {
 
-        //Adja vissza az összes elérhető élelmiszerkategóriához a bevásárolandó dolgokat.
+        SuperShoppingList superShoppingList = new SuperShoppingList();
+        List<ShoppingList> shoppingLists = new ArrayList<>();
 
-        /**
-         *
-         * {
-         *     [
-         *     "category": "FOOD",
-         *     "shoppingList": [
-         *         {
-         *             "itemDTO": {
-         *                 "id": 1,
-         *                 "name": "Körtelé",
-         *                 "category": "FOOD",
-         *                 "unitQuantity": {
-         *                     "unit": "LITRE",
-         *                     "quantity": 1.5
-         *                 }
-         *             },
-         *             "quantity": 5.0
-         *         },
-         *         {
-         *             "itemDTO": {
-         *                 "id": 2,
-         *                 "name": "Almalé",
-         *                 "category": "FOOD",
-         *                 "unitQuantity": {
-         *                     "unit": "LITRE",
-         *                     "quantity": 1.5
-         *                 }
-         *             },
-         *             "quantity": 10.0
-         *         }
-         *     ],
-         *     "category": "CLOTHES",
-         *     "shoppingList": [
-         *          {
-         *              "itemDTO": {
-         *                  "id": 1,
-         *                  "name": "Poló",
-         *                  "category": "CLOTHES",
-         *                  "unitQuantity": {
-         *                      "unit": "PIECE",
-         *                      "quantity": 1.0
-         *                  }
-         *              },
-         *              "quantity": 5.0
-         *          },
-         *          {
-         *              "itemDTO": {
-         *                  "id": 2,
-         *                  "name": "Nadrág",
-         *                  "category": "CLOTHES",
-         *                  "unitQuantity": {
-         *                      "unit": "PIECE",
-         *                      "quantity": 1.0
-         *                  }
-         *              },
-         *              "quantity": 10.0
-         *          }
-         *      ]
-         *   ]
-         * }
-         *
-         */
+        Arrays.stream(ShopCategory.values()).forEach(category -> {
+                    shoppingLists.add(getShoppingListForCategory(category));
+                }
+        );
 
+        superShoppingList.setShoppingLists(shoppingLists);
 
-        return null;
+        return superShoppingList;
     }
 }
